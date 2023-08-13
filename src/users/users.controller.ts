@@ -1,5 +1,5 @@
 // user/user.controller.ts
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
@@ -13,7 +13,7 @@ export class UserController {
   @Get('get-all-user')
   @Roles(Role.Admin) // Xác định vai trò cần thiết để truy cập
   @UseGuards(RolesGuard) // Sử dụng RolesGuard để kiểm tra phân quyền
-  getUsers() {
+  getUsers(@Request() req) {
     // Logic lấy danh sách người dùng
     return this.usersService.getUsers();
 }
