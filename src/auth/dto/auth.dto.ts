@@ -12,16 +12,10 @@ export class userType{
     full_name:String;
   
     @ApiProperty()
-    birth_day:String;
-  
-    @ApiProperty()
     gender:Boolean;
   
     @ApiProperty()
     user_role:String;
-  
-    @ApiProperty()
-    phone:String;
   
   }
 

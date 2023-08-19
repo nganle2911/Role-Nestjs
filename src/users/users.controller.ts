@@ -10,11 +10,14 @@ import { ApiHeader } from '@nestjs/swagger';
 export class UserController {
 
   constructor(private readonly usersService: UsersService) {}
-  @Get('get-all-user')
-  @Roles(Role.Admin) // Xác định vai trò cần thiết để truy cập
+
+
+  // Get admin
+  @Get("get-admin")
+  @Roles(Role.User) // Xác định vai trò cần thiết để truy cập
   @UseGuards(RolesGuard) // Sử dụng RolesGuard để kiểm tra phân quyền
-  getUsers(@Request() req) {
+  getAdmin() {
     // Logic lấy danh sách người dùng
-    return this.usersService.getUsers();
-}
+    return this.usersService.getAdmin();
+  }
 }

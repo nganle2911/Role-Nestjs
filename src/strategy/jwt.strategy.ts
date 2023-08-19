@@ -14,7 +14,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
   
     prisma = new PrismaClient();
-    async validate(payload: any) {
+    
+    /* async validate(payload: any) {
       try {
         const { sub: userId, role } = payload;
   
@@ -35,5 +36,5 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       } catch (error) {
         throw new UnauthorizedException();
       }
-    }
+    } */
   }

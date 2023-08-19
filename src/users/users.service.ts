@@ -1,13 +1,20 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
+import { Role } from 'src/enums/role.enum';
 
 @Injectable()
 export class UsersService {
   prisma = new PrismaClient();
-  async getUsers() {
+
+  async getAdmin() {
     try {
-      let getUsers = await this.prisma.users.findMany();
-      let data = getUsers.map((user) => ({ ...user, pass_word: '' }));
+      let getAdmin = await this.prisma.users.findMany({
+        where: {
+          user_role: Role.Admin
+        }
+      });
+      console.log("getAdmin", getAdmin)
+      let data = getAdmin.map((admin) => ({ ...admin, pass_word: '' }));
 
       return {
         statusCode: HttpStatus.OK,
